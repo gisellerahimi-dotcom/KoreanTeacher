@@ -38,7 +38,7 @@ def chat():
 #create ask_ai to take the user's message, send it to OpenAI, and return
 #the reply as text   
 def ask_ai(message):
-    result = client.response.create(
+    result = client.responses.create(
         model = "gpt-5-mini",
         instructions = (
             "You are a knowledgeable Korean language instructor"
