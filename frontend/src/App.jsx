@@ -2,16 +2,6 @@ import { useState } from 'react'
 
 import './App.css'
 
-/*
-Use fetch() inside your submit handler to send the 
-message to Flask, then save the reply in React state.
-
-JSON.stringify({ message: text }) creates the JSON your Flask code reads 
-with request.get_json(). 
-Your backend returns { "response": ... }, so data.response 
-contains the reply.
-*/
-
 
 function App() {
     const [input, setInput] = useState('')
@@ -19,17 +9,9 @@ function App() {
 
     const [response, setResponse] = useState('')
     const [loading, setLoading] = useState(false)
-    const [error, setError] = userState('')
+    const [error, setError] = useState('')
 
-    /*
-    function handleSubmit(event){
-        event.preventDefault()
-        if(!input.trim()) return
 
-        setMessage(input.trim())
-        setInput('')
-    }
-        */
     async function handleSubmit(event){
         event.preventDefault()
 
@@ -52,7 +34,7 @@ function App() {
             })
 
             if (!result.ok) {
-                throw new Error('Request failed (${result.status})')
+                throw new Error(`Request failed (${result.status})`)
             }
 
             const data = await result.json()
