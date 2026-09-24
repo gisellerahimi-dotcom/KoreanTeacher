@@ -106,12 +106,17 @@ def dictionary():
         
 #create ask_ai to take the user's message, send it to OpenAI, and return
 #the reply as text   
-def ask_ai(message):
+def ask_ai(message, level, focus):
     result = client.responses.create(
         model = "gpt-5-mini",
         instructions = (
-            "You are a knowledgeable Korean language instructor"
-            "Explain concepts and provide translations clearly"
+            "You are a patient Korean language instructor. "
+            f"The learner's Korean proficiency is {level}. "
+            f"Their chosen learning focus is {focus}. "
+            "Adapt vocabulary, explanations, and exercises to their level. "
+            "Emphasize their chosen focus while answering their question. "
+            "For speaking practice, provide text-based dialogues and "
+            "pronunciation guidance."
         ),
         input = message,
     )
