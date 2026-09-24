@@ -1,17 +1,14 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import tailwindcss from `@tailwindcss/vite`
 
 /*
-a development proxy forwards request from frontend server to
-backend server
-
-When React calls fetch('/api/chat'), the request goes to Vite. 
-A proxy tells Vite to forward requests starting with /api to Flask
+addingg the tailwind plugin while keeping flask proxy
 */
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server : {
     proxy : {
       '/api' : {

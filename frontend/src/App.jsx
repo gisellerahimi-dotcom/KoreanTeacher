@@ -135,6 +135,16 @@ function App() {
                     </article>
                 ))}
                 </section>
+                <label for="cars">My Korean level is:</label>
+                
+                <select id="level" name="level">
+                    <option value="" disabled selected hidden>Select an option...</option>
+                    <option value="novice">Novice</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="native">Native</option>
+                </select>
         </main>
     )
 
