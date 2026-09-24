@@ -182,3 +182,27 @@
     border-right-color: var(--border);
   }
 }
+.app-background {
+  min-height: 100vh;
+  background-color: #e0dfff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.app-card {
+  width: 100%;
+  max-width: 672px;
+  background-color: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 10px 25px rgb(0 0 0 / 0.1);
+}
+
+.korean-title {
+  font-family: "Libre Franklin", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: italic;
+}

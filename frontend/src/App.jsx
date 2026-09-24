@@ -17,6 +17,9 @@ function App() {
     const [dictionaryStatus, setDictionaryStatus] = useState('')
     const [searching, setSearching] = useState(false)
 
+    const [level, setLevel] = useState('')
+    const [focus, setFocus] = useState('vo')
+
     async function searchDictionary(event) {
     event.preventDefault()
     if (!word.trim() || searching) return
@@ -64,7 +67,7 @@ function App() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message: text}),
+                body: JSON.stringify({ message: text, level:level, focus: focus,}),
             })
 
             if (!result.ok) {
@@ -82,10 +85,12 @@ function App() {
     }
 
     return (
-        <main>
-            <h1>Korean Teacher</h1>
+        <main className = "min-h-dvh bg-[#070707] flex items-center justify-center p-4 sm:p-8">
+            <div >
 
-            <form onSubmit = {handleSubmit}>
+            <h1 className = "korean-title">Learn Korean with</h1>
+
+            <form onSubmit = {handleSubmit} className = "flex flex-wrap items-center justify-center gap-3 mb-8">
                 <label htmlFor="message">Your message</label>
                 <input
                     id = "message"
@@ -145,6 +150,52 @@ function App() {
                     <option value="advanced">Advanced</option>
                     <option value="native">Native</option>
                 </select>
+                </div>
+                <details className="mt-6 rounded-xl border border-gray-600 p-4 text-left">
+  <summary className="cursor-pointer font-medium text-[#e8e6f0]">
+    Advanced settings
+  </summary>
+
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+            <label htmlFor="level" className="mb-2 block">
+                My Korean level
+            </label>
+
+            <select
+                id="level"
+                value={level}
+                onChange={(event) => setLevel(event.target.value)}
+                className="w-full rounded-lg border border-gray-600 bg-[#222228] p-3 text-white"
+            >
+                <option value="" disabled>Select a level</option>
+                <option value="novice">Novice</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="native">Native</option>
+            </select>
+            </div>
+
+            <div>
+            <label htmlFor="focus" className="mb-2 block">
+                I want to focus on
+            </label>
+
+            <select
+                id="focus"
+                value={focus}
+                onChange={(event) => setFocus(event.target.value)}
+                className="w-full rounded-lg border border-gray-600 bg-[#222228] p-3 text-white"
+            >
+                <option value="vocabulary">Vocabulary</option>
+                <option value="grammar">Grammar</option>
+                <option value="writing">Writing</option>
+                <option value="speaking">Speaking</option>
+            </select>
+            </div>
+        </div>
+        </details>
         </main>
     )
 

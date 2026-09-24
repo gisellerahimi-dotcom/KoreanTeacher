@@ -30,8 +30,19 @@ def chat():
     data = request.get_json()
 
     message = data["message"]
+    
+    level = data.get("level") or "beginner"
+    focus = data.get("focus") or "vocabulary"
+    
+    if level not in {
+        "novice", "beginner", "intermediate", "advanced", "native"
 
-    response = ask_ai(message)
+    }: return jsonify({"error:" "Invalid Korean level"}), 400
+    
+    if focus not in {"vocabulary", "grammar", "writing", "speaking"}:
+        return jsonify({"error": "Invalid learning focus."}), 400
+
+    response = ask_ai(message, level, focus)
 
     #sendomg tp react
     return jsonify({
